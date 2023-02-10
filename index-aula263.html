@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="./vue.js"></script> 
+    <title>Mudar Cor com VueJS v-2.6.12</title>
+    <style>
+        .vermelho {
+            background-color: red
+        }
+
+        .verde {
+            background-color: green
+        }
+
+        .azul {
+            background-color: blue;
+        }
+
+        .borda {
+            border: 1px solid;
+        }
+
+        .div-principal {
+            width: 236px;
+            height: 150px;
+        }
+
+        .div-comum {
+            width: 75px;
+            height: 75px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body >
+
+    <div id="app" >
+        <h1>Mudar cor RGB</h1>
+        <div class="div-principal borda" :class="cor">
+            Cor: {{ cor }}
+            <br>
+            Posição X: {{ posicaoX }} <br>
+            Posição Y: {{ posicaoY }} <br>
+        </div>
+        <hr>
+        <p>Para mudar a cor do retângulo acima, passe o mouse em um dos quadrados abaixo:</p>
+        <div @mouseover="mudarCor('vermelho')" @mousemove="coordenadas($event)"  class="div-comum borda vermelho">Red</div>
+        <div @mouseover="mudarCor('verde')" @mousemove="coordenadas($event)" class="div-comum borda verde">Green</div>
+        <div @mouseover="mudarCor('azul')" @mousemove="coordenadas($event)" class="div-comum borda azul">Blue</div>
+    </div>
+
+    <script>
+
+        const vm = new Vue({ // vm = ViewModel
+            el: '#app', // # para id | . para class
+            data: {
+                cor: 'branco',
+                posicaoX: 0,
+                posicaoY: 0,
+            },
+            methods: {
+                mudarCor(c) {
+                    this.cor = c
+                },
+                coordenadas(ponto) {
+                    this.posicaoX = ponto.clientX;
+                    this.posicaoY = ponto.clientY;
+                }
+            }
+        }); 
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="./vue.js"></script> 
+    <title>VueJS v-2.6.12</title>
+    <style>
+        .vermelho {
+            color: red
+        }
+
+        .verde {
+            color: green
+        }
+
+        .negrito {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Forma enxuta da diretiva v-bind
+            O ':' é a forma mais enxuta da diretiva v-bind 
+            Exemplo: :href="site" é equivalente a v-bind:href="site"
+        -->
+        <a :href="site">Link: Meus repositorios no Github</a> <br>
+        <p :class="cor" class="negrito">Parágrafo: Entendendo a diretiva v-bind</p>
+        <input type="text" size="30" :placeholder="instrucaoDePreenchimento" :value="valor"> <br>
+        Checkbox <input type="checkbox" :checked="check" > <br>
+    </div>
+
+    <script>
+        options = {
+            el: '#app', // # para id | . para class
+            data: {
+                site: 'https://github.com/paulocaetanomt88?tab=repositories',
+                cor: 'vermelho',
+                instrucaoDePreenchimento: 'Placeholder com diretiva v-bind',
+                valor: 'Entendendo a diretiva v-bind',
+                check: true
+            },
+            methods: {
+            }
+        }
+
+        // atribuindo a nova instância de Vue a uma constante,
+        // é possivel recupera-la em outros locais do código
+        const vm = new Vue(options); // vm = ViewModel
+        
+        //console.log(vm);
+    </script>
+</body>
+</html>

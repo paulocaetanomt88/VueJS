@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="./vue.js"></script> 
+    <title>VueJS v-2.6.12</title>
+    <style>
+        .verde {
+            background-color: green
+        }
+
+        .azul {
+            background-color: blue;
+        }
+
+        .negrito {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- v-on:keyup observa o evento quando o usuário digita algo no input, similar a onkeyup="myFunction()"" do javascript" -->
+        <input type="text" id="input" v-on:keyup="imprimirTexto()" value=""> <br>
+
+        <!-- v-on:click observa o evento quando o usuário clica no botão, similar ao onlick="myFunction()" -->
+        <button v-on:click="funcaoAlerta()">Botão chama função alerta()</button> <br>
+
+        <!-- Outra forma de usar a diretiva V-on é substituindo o v-on:evento por @evento -->
+        <button @click="funcaoAlerta()">Botão chama função alerta()</button> <br>
+
+        <!-- Também podemos enviar parâmetros para a função chamada (method) -->
+        <input type="text" id="input" @keyup="imprimirTexto('valor passado via parâmetro','parametro 2', varData)" value=""> <br>
+    </div>
+
+    <script>
+        options = {
+            el: '#app', // # para id | . para class
+            data: {
+                varData: true,
+                xyz: false,
+            },
+            methods: {
+                imprimirTexto(param1, param2, param3) {
+                    console.log(param1, param2, param3, this.xyz);
+                },
+                funcaoAlerta() {
+                    alert('Clicou no botão!');
+                }
+            }
+        }
+
+        // atribuindo a nova instância de Vue a uma constante,
+        // é possivel recupera-la em outros locais do código
+        const vm = new Vue(options); // vm = ViewModel
+        
+        //console.log(vm);
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="./vue.js"></script> 
+    <title>VueJS v-2.6.12</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Aqui estamos fazendo um binding (ligação) de mensagem (nome) ao valor de mensagem no objeto options -->
+        {{ mensagem }} <br>
+        Valor total: {{ valorTotal }} <br>
+        Logado: {{ logado }} <br>
+        Hobbies: {{ hobbies[0] }} <br><br>
+        Perfil:<br>
+           - nome: {{ perfil.nome }} <br>
+           - blog: {{ perfil.blog }} <br>
+           - idade: {{ perfil.idade }} <br>
+           - cursos: <br>
+           -- {{ perfil.cursos[0].nome }} - carga horária: {{ perfil.cursos[0].cargaHoraria }} <br>
+           -- {{ perfil.cursos[1].nome }} - carga horária: {{ perfil.cursos[1].cargaHoraria }} <br>
+           
+    </div>
+
+    <script>
+        options = {
+            el: '#app', // # para id | . para class
+            data: {
+                mensagem: 'Primeiro template controlado pelo Vue', // string
+                valorTotal: 199.99,
+                logado : true,
+                hobbies: [
+                    'comer',
+                    'dormir',
+                    'estudar',
+                    'trilha',
+                    'pescar',
+                ],
+                perfil: {
+                    nome: 'Paulo Caetano',
+                    blog: 'https://paulocaetanomt88.blogspot.com/',
+                    idade: 34,
+                    cursos: [
+                        {
+                            nome: 'Desenvolvimento Web com Laravel e VueJS',
+                            cargaHoraria: 56.5
+                        },
+                        {
+                            nome: 'Linguagem PHP e MySQL',
+                            cargaHoraria: 40
+                        }
+                    ]
+                }
+
+            },
+
+        }
+
+        // atribuindo a nova instância de Vue a uma constante,
+        // é possivel recupera-la em outros locais do código
+        const vm = new Vue(options); // vm = ViewModel
+        
+        console.log(vm);
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="./vue.js"></script> 
+    <title>Mudar Cor com VueJS v-2.6.12</title>
+    <style>
+        .vermelho {
+            background-color: red
+        }
+
+        .verde {
+            background-color: green
+        }
+
+        .azul {
+            background-color: blue;
+        }
+
+        .borda {
+            border: 1px solid;
+        }
+
+        .div-principal {
+            width: 236px;
+            height: 150px;
+        }
+
+        .div-comum {
+            width: 75px;
+            height: 75px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body >
+    <h1>Implementando modificadores</h1>
+    <p>Cada tipo de evento possui modificadores próprios. Os modificadores podem ser encadeados.</p>
+    <p>Modificadores:</p>
+    <ul>
+        <li>@click.prevent - </li>
+        <li>@click.once - </li>
+        <li>@click.prevent.once - </li>
+        <li>@keyup.a - </li>
+        <li>@keyup.shift.enter - </li>
+    </ul>
+    <h5>Testes da aula:</h5>
+    <div id="app" style="padding-top: 100px">
+        <a href="https://www.google.com"
+            target="_blank"
+            v-on:click.prevent="prevenirComportamentoPadrao()">
+        Link
+        </a>
+        <p>Mensagem: {{ msg }}</p>
+        
+        <hr>
+        
+        <button @click.prevent.once="executarUmaVez()">Botão</button>
+        <p>cliques: {{ cliques }}</p>
+        
+        <hr>
+        
+        <form @submit.prevent.once="prevenirUmaVez()">
+            <button type="submit">Enviar</button>
+        </form>
+        <p>Formulário: {{ formulario }}</p>
+        
+        <hr>
+
+        <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)">
+        <p>Teclas: {{ teclas }}</p>
+    </div>
+
+    <script>
+
+        const vm = new Vue({ // vm = ViewModel
+            el: '#app', // # para id | . para class
+            data: {
+                msg: '',
+                cliques: 0,
+                formulario: '',
+                teclas: ''
+            },
+            methods: {
+                prevenirComportamentoPadrao() {
+                    this.msg = 'Comportamento padrão ativado'
+                    console.log(this.msg)
+                },
+                executarUmaVez() {
+                    this.cliques++
+                },
+                prevenirUmaVez() {
+                    this.formulario = 'Preveniu o comportamento padrão'
+                },
+                capturandoTeclas(event) {
+                    this.teclas = 'Modificadores foram executados.'
+                }
+            }
+        }); 
+        
+
+    </script>
+</body>
+</html>
