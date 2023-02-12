@@ -12,7 +12,7 @@
     <h1>Diretiva V-Show - Renderização condicional</h1>
     <p></p>
     <div id="app" style="padding-top: 50px">
-        <h3 @mouseover="exibirTextoAjuda = true" >Exemplo tooltip</h3>
+        <h3 @mouseover="exibirTextoAjuda = true" @mouseout="exibirTextoAjuda = false">Exemplo tooltip</h3>
         <div v-show="exibirTextoAjuda">
             <h3>Título do texto ajuda</h3>
             <p>Parágrafo do texto ajuda</p>
@@ -30,7 +30,6 @@
             }
         }); 
         
-
     </script>
 </body>
 </html>
