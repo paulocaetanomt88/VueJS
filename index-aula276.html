@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script> 
+    <title>Exercícios da aula 276. Trabalhando com a tag Template para renderização condicional e listas</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body >
+    <h1>Exercícios da aula 276. </h1>
+    <h3>Trabalhando com a tag Template para renderização condicional e listas</h3>
+    <div id="app" style="padding-top: 50px">
+        <template v-if="saudacao"> <!-- renderização condicional -->
+            <h1>Boas vindas</h1>
+            <p>Conteúdo da tag <strong>template</strong></p>
+        </template>
+        
+        <template v-for="n in 10">
+            <p>2 x {{n}} = {{2*n}}</p>
+        </template>
+    </div>
+
+    <script>
+
+        const vm = new Vue({ // vm = ViewModel
+            el: '#app', // # para id | . para class
+            data: {
+                saudacao: true
+            },
+            methods: {
+            }
+        }); 
+        
+    </script>
+</body>
+</html>
