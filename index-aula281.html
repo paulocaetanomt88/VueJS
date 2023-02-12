@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script> 
+    <title>281. Trabalhando com propriedades observadoras (watch)</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body >
+    <h1>281. Trabalhando com propriedades observadoras (watch)</h1>
+    <h5>Métodos observadores de atributos precisam ter o mesmo nome do atributo que estão observando.</h5>
+    <p>O gatilho para disparar o método é quando há uma mudança no estado do atributo observado.</p>
+    <div id="app" style="padding-top: 50px">
+        <span>Paciente: </span><input type="text" v-model="paciente">
+        <br>
+        <ul>
+            <li v-for="p in lista">{{ p.nome }}, {{ p.idade }}</li>
+        </ul>
+    </div>
+
+    <script>
+
+        const vm = new Vue({ // vm = ViewModel
+            el: '#app', // # para id | . para class
+            data: {
+                paciente: '',
+                pacientes: [
+                    { nome: 'Paciente da Silva', idade: 30 },
+                    { nome: 'Paciente de Oliveira', idade: 31 },
+                    { nome: 'Paciente dos Santos', idade: 32 },
+                    { nome: 'Paciente da Cunha', idade: 33 },
+                    { nome: 'Paciente Campos', idade: 34 },
+                ],
+                lista: []
+            },
+            methods: {
+            },
+            computed: {
+            },
+            watch: {
+                paciente(valorNovo) {
+                    console.log(valorNovo)
+                    this.lista = this.pacientes.filter(p => p.nome.match(valorNovo))
+                }
+            }
+        }); 
+        
+    </script>
+</body>
+</html>
