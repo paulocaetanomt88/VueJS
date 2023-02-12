@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script> 
+    <title>280. Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding)</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body >
+    <h1>280. Diretiva V-Model</h1>
+    <h3>Sincronizando inputs com atributos (two-way-data binding)</h3>
+    <div id="app" style="padding-top: 50px">
+        {{ paciente }}<br>
+
+        <!-- Forma verbosa
+            <input type="text" :value="paciente" @keyup="paciente = $event.target.value">
+        -->
+        <!-- Forma com V-Model -->
+        <input type="text" v-model="paciente">
+
+        <hr>
+        <input type="radio" value="f" v-model="sexo"> Feminino  <br>
+        <input type="radio" value="m" v-model="sexo"> Masculino
+        <br> {{ sexo }}
+        
+        <hr>
+        <select v-model="plano">
+            <option value="" disabled>Selecione um plano</option>
+            <option value="1">Básico</option>
+            <option value="2">Plus</option>
+            <option value="3">Master</option>
+        </select>
+        <br> {{ plano }}
+        
+        <hr>
+        <input type="checkbox" value="100" v-model="doencas">Asma
+        <input type="checkbox" value="101" v-model="doencas">Diabetes tipo 1
+        <input type="checkbox" value="102" v-model="doencas">Rinite
+        <br> {{ doencas }}
+
+        <hr>
+        <textarea v-model="diagnostico"></textarea>
+        <br> {{ diagnostico }}
+    </div>
+
+    <script>
+
+        const vm = new Vue({ // vm = ViewModel
+            el: '#app', // # para id | . para class
+            data: {
+                paciente: 'Fulano de Oliveira',
+                sexo: '',
+                plano: '',
+                doencas: [],
+                diagnostico: ''
+            },
+            methods: {
+            },
+            computed: {
+
+            }
+        }); 
+        
+    </script>
+</body>
+</html>
