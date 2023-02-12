@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script> 
+    <title>Exercícios das aulas 268 e 269 - Diretiva V-HTML e V-Text - Injetando elementos HTML</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body >
+    <h1>Diretiva V-HTML - Injetando elementos HTML</h1>
+    <p>A diretiva v-html é uma diretiva Vue.js usada para atualizar o innerHTML de um elemento com nossos dados. <br>
+        Isso é o que o separa do v-text, o que significa que enquanto o v-text aceita string e o trata como uma string, <br>
+        ele aceitará a string e o renderizará em HTML.</p>
+    <p>A diretiva v-text é uma diretiva Vue.js usada para atualizar o textContent de um elemento com nossos dados. É apenas uma boa alternativa para a sintaxe do Mustache.</p>
+    <p>* Ambas as diretivas não somente inserem, mas substituem todo o conteúdo existente do elemento html em que foi declarado.</p>
+    <p>* Por ter a característica de injetar e renderizar elementos HTML, é necessário tomar cuidado com informações que não são confiáveis <br>
+         para evitar potenciais ataques.</p>
+    <div id="app" style="padding-top: 50px">
+        <div v-html="elementosHTML">Texto de exemplo</div>
+        <div v-text="elementosHTML">Texto de exemplo</div>
+    </div>
+
+    <script>
+
+        const vm = new Vue({ // vm = ViewModel
+            el: '#app', // # para id | . para class
+            data: {
+                elementosHTML: '<h2>Melhor plataforma de cursos online</h2><h3>Udemy - <a href="https://www.udemy.com/">acessar</a></h3>'
+            },
+            methods: {
+            }
+        }); 
+        
+    </script>
+</body>
+</html>
