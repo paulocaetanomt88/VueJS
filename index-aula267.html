@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script> 
+    <title>Diretiva V-Show - Renderização condicional</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body >
+    <h1>Diretiva V-Show - Renderização condicional</h1>
+    <p></p>
+    <div id="app" style="padding-top: 50px">
+        <h3 @mouseover="exibirTextoAjuda = true" >Exemplo tooltip</h3>
+        <div v-show="exibirTextoAjuda">
+            <h3>Título do texto ajuda</h3>
+            <p>Parágrafo do texto ajuda</p>
+        </div>
+    </div>
+
+    <script>
+
+        const vm = new Vue({ // vm = ViewModel
+            el: '#app', // # para id | . para class
+            data: {
+                exibirTextoAjuda: false
+            },
+            methods: {
+            }
+        }); 
+        
+
+    </script>
+</body>
+</html>
