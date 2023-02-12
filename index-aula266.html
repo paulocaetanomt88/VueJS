@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script> 
+    <title>Diretivas v-if, v-else-if e v-else - Renderização condicional</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body >
+    <h1>Diretiva V-If - Renderização condicional</h1>
+    <p>O valor atribuído à diretiva v-if é uma expressão, ou seja, aceita instruções bind para com valores de atributos da instância do vue,
+        aceita chamadas de método da instância do vue, operador ternário e execução de cálculos.</p>
+    <div id="app" style="padding-top: 50px">
+        <!-- v-if forma simples -->
+        <button @click="exibirSaldo = !exibirSaldo">
+            <span v-if="!exibirSaldo">
+                Exibir saldo
+            </span>
+            <span v-if="exibirSaldo">
+                Ocultar saldo
+            </span>
+        </button>
+        <p>Saldo: 
+            <span v-if="exibirSaldo">
+                R$ {{ saldo }}
+            </span>
+            <span v-if="!exibirSaldo">
+                R$ *,*
+            </span>
+        </p>
+
+        <hr>
+
+        <h3>Verifica Idade para Aposentar</h3>
+        <!-- v-if, v-else-if e v-else -->
+        <p>Digite a idade: <input type="text" id="inputIdade" @blur="setIdade()"></p>
+
+        <p>Selecione o sexo: <br>
+        <input type="radio" id="inputSexo" v-model="sexo" value="m" @click="setSexo()">Masculino<br>
+        <input type="radio" id="inputSexo" v-model="sexo" value="f" @click="setSexo()">Feminino</p>
+        
+        <p v-if="idade == ''">Informe a idade e o sexo para verificar.</p>
+        <p v-else-if="sexo == ''">Informe o sexo para verificar.</p>
+        <p v-else-if="idade >= 65">Pode aposentar por idade.</p>
+        <p v-else-if="idade >= 62 && sexo == 'f'">Pode aposentar por idade.</p>
+        <p v-else>Não pode aposentar por idade.</p>
+        <hr>
+
+        <h3>Verifica aprovação por nota</h3>
+        <p>Informe a nota: <input type="text" id="inputNota" @blur="setNota"></p>
+        <p v-if="nota == ''">Informe a nota do aluno</p>
+        <p v-else-if="nota >= 7 && nota <= 10">Aluno aprovado</p>
+        <p v-else-if="nota >= 5 && nota < 7">Aluno em recuperação</p>
+        <p v-else-if="nota >= 0 && nota < 5">Aluno reprovado</p>
+        <p v-else>Nota informada é inválida</p>
+    </div>
+
+    <script>
+
+        const vm = new Vue({ // vm = ViewModel
+            el: '#app', // # para id | . para class
+            data: {
+                saldo: 12000.99,
+                exibirSaldo: true,
+                idade: 0,
+                sexo: '',
+                nota: 0
+            },
+            methods: {
+                setIdade() {
+                    this.idade = inputIdade.value
+                },
+                setSexo() {
+                    this.sexo = inputSexo.value
+                },
+                setNota() {
+                    this.nota = inputNota.value
+                }
+            }
+        }); 
+        
+
+    </script>
+</body>
+</html>
