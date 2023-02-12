@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script> 
+    <title>Exercícios das aulas 271 a 275. Diretiva V-For</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding-top: 10px;
+          padding-bottom: 20px;
+          padding-left: 30px;
+          padding-right: 40px;
+        }
+        </style>
+</head>
+<body >
+    <h1>Exercícios das aulas 271 a 275. Diretiva V-For</h1>
+    <h3>Implementando laços de repetição parte 1</h3>
+    <div id="app" style="padding-top: 50px">
+        <h5>Usando v-for com v-text</h5>
+        <ul>
+            <li v-for="(curso, chave) in cursos" v-text="chave + ' - ' + curso"></li>
+        </ul>
+
+        <h5>Usando v-for chave-valor</h5>
+        <ul>
+            <li v-for="(curso, chave) in cursos">{{chave}} - {{curso}}</li>
+        </ul>
+
+        <hr>
+        <h1>Parte 2</h1>
+        <h4>Trabalhando com objetos renderizados em tabela</h4>
+        <table border="1px">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="({titulo,descricao}, chave) in cursos2"> <!-- Destructuring Assignment-->
+                    <td>{{chave}}</td>
+                    <td>{{titulo}}</td>
+                    <td>{{descricao}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+        <h1>Renderização de listas com o atributo Key</h1>
+        <h4></h4>
+
+        <ul>
+            <li v-for="p in publicacoes" style="border: solid 1px; margin-bottom: 10px;" :key="p.id">
+                <div>
+                    {{ p.publicacao }}
+                    <hr>
+                    <input type="text" id="">
+                </div>
+            </li>
+        </ul>
+        <button @click="misturarArray()">Misturar</button>
+
+        <hr>
+        <h1>Parte 3</h1>
+        <h4>Iterar sobre um valor numérico</h4>
+        <ul>
+            <li v-for="n in numero">{{n}}</li>
+        </ul>
+
+        <hr>
+        <h1>Parte 4</h1>
+        <h4>Como adicionar, remover e modificar elementos de um array de forma como essas alterações sejam reativas para com os elementos renderizados no browser</h4>
+        <ul>
+            <li v-for="c in comentarios">{{c.id}} - {{c.comentario}}</li>
+        </ul>
+        <br>
+        <input type="number" disabled size="2" placeholder="ID automático"> - <input type="text" id="comentario" placeholder="comentário">
+        <button @click="adicionarElemento()">Adicionar</button> <button @click="removerElemento()">Remover</button> <button @click="modificarElemento()">Modificar</button>
+        <br>
+    </div>
+
+    <script>
+
+        const vm = new Vue({ // vm = ViewModel
+            el: '#app', // # para id | . para class
+            data: {
+                cursos: ['Laravel', 'MySQL', 'PostgreSQL', 'SOLID', 'Vue.js', 'Angular'],
+                cursos2: {
+                    1000: {
+                        titulo: 'Laravel',
+                        descricao: 'Domine o framework PHP mais poderoso do mundo.'
+                    },
+                    1001: {
+                        titulo: 'Banco de dados',
+                        descricao: 'Aprenda os principais BDs relacionais do mercado.'
+                    }
+                },
+                publicacoes: [
+                    { id: 1, publicacao: 'Publicações 1'},
+                    { id: 2, publicacao: 'Publicações 2'},
+                    { id: 3, publicacao: 'Publicações 3'},
+                ],
+                numero: 5,
+                
+                comentarios: [
+                    {id: 1, comentario: 'Texto do comentário 1'},
+                    {id: 2, comentario: 'Texto do comentário 2'},
+                    {id: 3, comentario: 'Texto do comentário 3'},
+                ],
+            },
+            methods: {
+                misturarArray() {
+                    let misturado = []
+
+                    misturado[0] = this.publicacoes[2];
+                    misturado[1] = this.publicacoes[0];
+                    misturado[2] = this.publicacoes[1];
+
+                    this.publicacoes = misturado
+                },
+                adicionarElemento() {
+                    let nextId = this.comentarios[this.comentarios.length - 1].id + 1;
+                    this.comentarios.push({ id: nextId, comentario: comentario.value})
+                },
+                removerElemento() {
+                    this.comentarios.pop()
+                },
+                modificarElemento() {
+                    this.$set(this.comentarios, 1, {id: 2, comentario: 'Comentário 2 modificado'})
+                }
+            }
+        }); 
+        
+    </script>
+</body>
+</html>
